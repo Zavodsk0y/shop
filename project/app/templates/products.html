@@ -1,0 +1,38 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+<form method="get">
+    {{ search_form.as_p }}
+    <button type="submit" class="btn btn-info">Поиск</button>
+  </form>
+
+{% for product in products %}
+
+<h2><a href="{% url 'product' product.pk %}">Наименование товара/услуги: {{ product.name }}</a></h2>
+
+<p>{{ product.description }}</p>
+
+<img src="{{ product.image.url }}" alt="Изображение отсутствует" width="300px" height="300px">
+
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

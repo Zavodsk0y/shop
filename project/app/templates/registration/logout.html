@@ -1,0 +1,11 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+<h2>Выход</h2>
+<p>Вы точно хотите выйти из аккаунта?</p>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-lg">Выход</button>
+</form>
+
+{% endblock %}

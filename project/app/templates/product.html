@@ -1,0 +1,17 @@
+{% extends 'basic.html' %}
+
+{% block content %}
+
+<h2>Наименование товара/услуги: {{ product.name }}</h2>
+
+<p>{{ product.description }}</p>
+
+<img src="{{ product.image.url }}" alt="Изображение отсутствует" width="300px" height="300px">
+
+
+<form action="{% url 'add-to-cart' product_id=product.pk %}" method="post">
+    {% csrf_token %}
+    <button class="btn btn-outline-success btn-lg">Заказать товар/услугу</button>
+</form>
+
+{% endblock %}
